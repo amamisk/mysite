@@ -1,0 +1,117 @@
+////////////////////////////////////////////////////////////
+// 事前定義
+////////////////////////////////////////////////////////////
+
+//5.6.FizzBuzz用定義
+bool is_zero( int a ) { return (a % 2 == 0); }
+bool is_three( int a ) { return (a % 3 == 0); }
+bool is_five( int a ) { return (a % 5 == 0); }
+void is_fizzbuzz( int a,int b ) {
+  for (int i = a; i <= b; i++) {
+    bool f1 = false;
+    bool f2 = false;
+    
+    if( is_three(i) && is_five(i) ){
+      print('$i FizzBuzz');
+      f1 = true;
+      f2 = true;
+    }
+    if( is_three(i) && !f1 ){
+      print('$i Fizz');
+      f2 = true;
+    }
+    if( is_five(i) && !f1 ){
+      print('$i Buzz');
+      f2 = true;
+    }
+    if( !f2 ){
+      print('$i');
+    }
+  }
+}
+
+//7.配列とシャッフル用定義
+List list1 = [0,1,2,3,4,5,6,7,8,9,
+           10,11,12,13,14,15,16,17,18,19,
+           20,21,22,23,24,25,26,27,28,29,
+           30,31,32,33,34,35,36,37,38,39,
+           40,41,42,43,44,45,46,47,48,49,
+           50,51,52,53,54,55,56,57,58,59,
+           60,61,62,63,64,65,66,67,68,69,
+           70,71,72,73,74,75,76,77,78,79,
+           80,81,82,83,84,85,86,87,88,89,
+           90,91,92,93,94,95,96,97,98,99];
+
+void shuffle(List list, int start, int end) {
+  var now = DateTime.now();
+	var nowrandom = now.second;
+  //var random = math.Random();
+  end = list.length;
+  var length = end - start;
+  
+  while (length > 1) {
+    //var pos = random.nextInt(length);
+    var pos = nowrandom;//乱数生成諦めました。
+    length--;
+    var tmp1 = list[start + pos];
+    list[start + pos] = list[start + length];
+    list[start + length] = tmp1;
+  }
+}
+
+////////////////////////////////////////////////////////////
+// main
+////////////////////////////////////////////////////////////
+void main() {
+  
+//1.出力「Hello World!」を出力する。
+  print('1.出力「Hello World!」を出力する。');
+  print('Hello World!');
+  print('\n');
+  
+//2.ループ「Hello World!」を10行出力する。
+  print('2.ループ「Hello World!」を10行出力する。');
+  for (int i = 0; i < 10; i++) {
+    print('Hello World! ${i + 1}');
+  }
+  print('\n');
+  
+//3.1から10までの和を計算し、結果を出力する。
+  print('3.1から10までの和を計算し、結果を出力する。');
+  int c = 0;
+  for (int i = 0; i < 10; i++) {
+    c += (i+1);
+    print(c);
+  }
+  print('\n');
+  
+//4.0～99 のランダムな数値を発生させる。
+  print('4.0～99 のランダムな数値を発生させる。');
+  for (int i = 0; i < 10; i++) {
+    
+    //ランダム数値取得
+    //var random = new math.Random();
+    //int r1 = random.nextInt(99);
+    int r1 = 0;
+    
+    //奇数偶数判定
+    if( is_zero(r1) ){
+      print('$r1 偶数');
+    }else{
+      print('$r1 奇数');
+    }
+  }
+  print('\n');
+  
+//5.6.FizzBuzz
+  print('5.6.FizzBuzz。');
+  is_fizzbuzz(1,100);
+  print('\n');
+  
+//7.配列とシャッフル
+  print('7.配列とシャッフル。');
+  print('変更前 配列\n $list1');
+  shuffle(list1,0,99);
+  print('変更後 配列\n $list1');
+  print('\n');
+}
